@@ -1,4 +1,4 @@
-# Hotel Management
+# Hotel Management Project
 
 * Web UI that allows a user to manage guests, rooms, and packages for the hotel.
 * Database design
