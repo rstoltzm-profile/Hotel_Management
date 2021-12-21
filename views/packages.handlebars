@@ -1,0 +1,75 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<ul>
+<h3> <a href='/'>Return to Home Page</a></h3>
+</ul>
+
+<h3>Add a new package</h3>
+<form id="addpackage" action="/packages" method="post">
+    Package Name: <input type="text" name="package_name">
+    Price: <input type="number" name="package_cost">
+    </select><br>
+    <input type="submit" value="Submit">
+</form>
+<br>
+<table>
+    <thead>
+        <th>Package id</th>
+        <th>Package Name</th>
+        <th>Price</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </thead>
+    <tbody>
+        {{#each packages}}
+        <tr>
+            <td>{{pid}}</td>
+            <td>{{package_name}}</td>
+            <td>{{package_cost}}</td>
+            <td><button onclick="confirmation({{pid}})">Delete</button></td>
+            <td><a href="/packages/{{pid}}">Update</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</html>
+
+<h3>Assign a package to a guest</h3>
+<form id="assignpackage" action="/packages/assign" method="post">
+    Select Guest: <select name="gid"> 
+        {{#each guests}}
+        <option value="{{gid}}">name: {{fullname}} gid: {{gid}} </option>
+        {{/each}}
+    </select><br>
+    Select Package: <select name="pid"> 
+        {{#each packages}}
+        <option value="{{pid}}">name: {{package_name}} pid: {{pid}} </option>
+        {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+</form>
+<br>
+<table>
+    <thead>
+        <th>Guest Id</th>
+        <th>Package id</th>
+        <th>Full Name</th>
+        <th>Package Name</th>
+        <th>Update</th>
+    </thead>
+    <tbody>
+        {{#each guest}}
+        <tr>
+            <td>{{gid}}</td>
+            <td>{{pid}}</td>
+            <td>{{First_Last}}</td>
+            <td>{{package_name}}</td>
+            <td><button onclick="confirmation_gid_to_pid({{gid}}, {{pid}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</html>

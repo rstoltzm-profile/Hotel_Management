@@ -1,0 +1,80 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<ul>
+<h3> <a href='/'>Return to Home Page</a></h3>
+</ul>
+
+<h1>Guess Management Page</h1>
+<h3>Add new Guest:</h3>
+<form id="addperson" action="/people" method="post">
+    First Name: <input type="text" name="first_name"><br>
+    Last Name: <input type="text" name="last_name"><br>
+    Phone Number: <input type="number" name="phone_number"><br>
+    Customer Since: <input type="date" name="customer_date"><br>
+    Last Stay: <input type="date" name="last_stay">
+    {{#each guests}}
+    <option value="{{id}}">{{name}}</option>
+    {{/each}}
+    </select><br>
+    <input type="submit" value="Submit">
+</form>
+<br>
+
+<h3>Current Guests:</h3>
+<form id='filter_guests' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Filter by Room id: </label>
+    <select id='roomid_filter' name="roomid"> 
+        {{#each people}}
+        <option value="{{rid}}">{{rid}}</option>
+        {{/each}}
+    </select>
+    <input type="button" value="Filter" onclick="filterGuestsByRoomId()">
+</form>
+
+<form id='search_guests' action='' method=''>
+    <label> Search guest by last name characters: </label>
+    <input id='last_name_search_string' type='text' name='last_name_search_string' value=''>
+    <input type="button" value="Search" onclick="searchPeopleByLastName()">
+</form>
+<br>
+<br>
+
+<table>
+    <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Guest Id</th>
+        <th>Phone Number</th>
+        <th>Customer Date</th>
+        <th>Last Stay</th>
+        <th>Room id</th>
+        <th>Remove Guest</th>
+        <th>Update Guest</th>
+    </thead>
+    <tbody>
+        {{#each people}}
+        <tr>
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{gid}}</td>
+            <td>{{phone_number}}</td>
+            <td>{{customer_date}}</td>
+            <td>{{last_stay}}</td>
+            <td>{{rid}}</td>
+            <td><button onclick="deletePerson({{gid}})">Delete</button></td>
+            <td><a href="/people/{{gid}}">Update</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<br>
+<label> Reset guest table: </label> <input type="button" value="Reset" onclick="reset_guests()">
+</html>
+
+<h3>Once a guest is added to the system<br>
+<a href='/check_in_out'>Click here to check in a guest</a>
+</h3>

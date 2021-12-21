@@ -1,0 +1,19 @@
+<html>
+<h1>Update rid {{room.rid}} (Floor {{room.floor_number}}, Room {{room.room_number}})
+    <br> Is room currently available? {{room.available}} (1=Yes, 0=No) </h1>
+<form id="update-room" action="/rooms" method="post">
+    Available: 
+    <input type="checkbox" name="available"/>
+    <br>
+    Floor Number: (1-20)
+    <input type="number" name="floor_number" value="{{room.floor_number}}">
+    <br>
+    Room Number: (1-20)
+    <input type="number" name="room_number" value="{{room.room_number}}">
+    <br>
+    Capacity: (1-10)
+    <input type="number" name="capacity" value="{{room.capacity}}">
+    <br>
+</form>
+<button onclick="updateRoom({{room.rid}})">Update</button>
+</html>

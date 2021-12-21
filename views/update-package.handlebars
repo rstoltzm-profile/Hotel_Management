@@ -1,0 +1,12 @@
+<html>
+<h1>Update pid {{package.pid}}</h1>
+<form id="update-package" action="/packages" method="post">
+    Package Name: 
+    <input type="cost" name="package_name" value="{{package.package_name}}">
+    <br>
+    Package Cost:
+    <input type="cost" name="package_cost" value="{{package.package_cost}}">
+    <br>
+</form>
+<button onclick="updatePackage({{package.pid}})">Update</button>
+</html>

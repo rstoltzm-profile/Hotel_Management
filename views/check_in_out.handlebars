@@ -1,0 +1,83 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<ul>
+<h3> <a href='/'>Return to Home Page</a></h3>
+</ul>
+
+<h1>Check in a guest</h1>
+<body>guests page will be updated with room information<br>
+room page will update room availablity<br>
+check_in status will be updated below</body><br>
+<br>
+<form id="add_check_in_out" action="/check_in_out" method="post">
+    Unassigned Guests: <select name="gid"> 
+        {{#each guests}}
+        <option value="{{gid}}">name: {{fullname}} gid: {{gid}} </option>
+        {{/each}}
+    </select><br>
+    
+    Available Rooms: <select name="rid"> 
+        {{#each rooms}}
+        <option value="{{rid}}">floor-room: {{floor_room}}</option>
+        {{/each}}
+    </select><br>
+
+    check_in_date: <input type="date" name="check_in_date"><br>
+    check_out_date: <input type="date" name="check_out_date"><br>
+    </select><br>
+    <input type="submit" value="Submit">
+</form>
+
+<h1>Current Hotel Check In Status</h1>
+<table>
+    <thead>
+        <th>rid</th>
+        <th>floor-room</th>
+        <th>fullname</th>
+        <th>check_in_date</th>
+        <th>check_out_date</th>
+    </thead>
+    <tbody>
+        {{#each check_in_outs}}
+        <tr>
+            <td>{{rid}}</td>
+            <td>{{floor_room}}</td>
+            <td>{{fullname}}</td>
+            <td>{{check_in_date}}</td>
+            <td>{{check_out_date}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<h1>Check out a guest</h1>
+<h3>guests page will be updated with room information<br>
+room page will update room availablity<br>
+will remove item from tracking in check_in_out table</h3>
+<table>
+    <thead>
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>rid</th>
+        <th>check_in_date</th>
+        <th>check_out_date</th>
+        <th>check_out</th>
+    </thead>
+    <tbody>
+        {{#each guest_check_out}}
+        <tr>
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{rid}}</td>
+            <td>{{check_in_date}}</td>
+            <td>{{check_out_date}}</td>
+            <td><button onclick="confirmation({{rid}},{{gid}})">check out guest</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+</html>

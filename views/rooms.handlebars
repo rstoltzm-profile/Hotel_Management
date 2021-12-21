@@ -1,0 +1,48 @@
+<html>
+{{#each foo}}
+{{this}}
+{{/each}}
+
+<ul>
+<h3> <a href='/'>Return to Home Page</a></h3>
+</ul>
+
+<h1>Room page allows user to create, read, update, and delete rooms</h1>
+<h3>Add a new room</h3>
+<form id="addroom" action="/rooms" method="post">
+    Available:
+    <label><input type=checkbox checked name=available ></label><br>
+    Floor Number (1-20): <input type="number" name="floor_number"><br>
+    Room Number (1-20): <input type="number" name="room_number"><br>
+    Capacity (1-10): <input type="number" name="capacity">
+    </select><br>
+    <input type="submit" value="Submit">
+</form>
+
+<h3>Current Rooms:</h3>
+<table>
+    <thead>
+        <th>Floor</th>
+        <th>Room</th>
+        <th>Room id</th>
+        <th>Available</th>
+        <th>Capacity</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </thead>
+    <tbody>
+        {{#each rooms}}
+        <tr>
+            <td>{{floor_number}}</td>
+            <td>{{room_number}}</td>
+            <td>{{rid}}</td>
+            <td>{{available}}</td>
+            <td>{{capacity}}</td>
+            <td><button onclick="confirmation({{rid}})">Delete</button></td>
+            <td><a href="/rooms/{{rid}}">Update</a></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+</html>
